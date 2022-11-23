@@ -1,4 +1,4 @@
-function checkCharacters() {
+function validarCaracteres() {
   const caracteresValidos = ["a", "b", "c", "->", "<->", "~", "^", "v"];
 
   var flag = true;
@@ -18,5 +18,5 @@ function checkCharacters() {
 }
 
 var expressao = prompt("Digite aqui: ");
-
-checkCharacters(expressao)
+validarCaracteres(expressao)
+console.log("teste do git");
