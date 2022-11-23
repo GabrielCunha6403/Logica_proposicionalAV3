@@ -1,22 +1,7 @@
-function checkCharacters() {
-  const caracteresValidos = ["a", "b", "c", "->", "<->", "~", "^", "v"];
+var inputText = document.getElementById("proposition")
+var btnA = document.getElementById("btnA");
 
-  var flag = true;
-  for (let i = 0; i < expressao.length; i++) {
-    const checkChar = expressao[i];
 
-    if (!caracteresValidos.includes(checkChar)) {
-      flag = false;
-    }
-  }
-
-  if (flag) {
-    console.log("Tudo certo!");
-  } else {
-    console.log("Tem erro.");
-  }
+function printValue(value) {
+    inputText.value += value;
 }
-
-var expressao = prompt("Digite aqui: ");
-
-checkCharacters(expressao)

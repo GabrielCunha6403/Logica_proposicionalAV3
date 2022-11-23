@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script type="text/javascript" src="calculadoraLogica.js"></script>
-</head>
+<html>
 <body>
-    
+    <input id="proposition" type="text">
+
+    <div>
+        <button id="btnA" value="A " onclick="printValue(value)">A</button>
+        <button id="btnB" value="B " onclick="printValue(value)">B</button>
+        <button id="btnC" value="C " onclick="printValue(value)">C</button>
+        <button id="btnOr" value="v " onclick="printValue(value)">v</button>
+        <button id="btnAnd" value="^ " onclick="printValue(value)">^</button>
+        <button id="btnThen" value="→ " onclick="printValue(value)">→</button>
+        <button id="btnNot" value="~" onclick="printValue(value)">~</button>
+    </div>
+
+<script type="text/javascript" src="calculadoraLogica.js"></script>
 </body>
 </html>
