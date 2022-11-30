@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <body>
-    <input id="proposition" type="text">
+    <input id="proposition" type="text" disabled>
 
     <div>
         <button id="btnA" value="A " onclick="printValue(value)">A</button>
@@ -11,8 +11,13 @@
         <button id="btnAnd" value="^ " onclick="printValue(value)">^</button>
         <button id="btnThen" value="→ " onclick="printValue(value)">→</button>
         <button id="btnNot" value="~" onclick="printValue(value)">~</button>
+        <button id="btnThen" value="(" onclick="printValue(value)">(</button>
+        <button id="btnNot" value=")" onclick="printValue(value)">)</button>
+        <button id="btnNot" onclick="clean()">CLEAN</button>
     </div>
+    <div id="tableArea"></div>
 
 <script type="text/javascript" src="calculadoraLogica.js"></script>
+<link href="style.css" rel="stylesheet" />
 </body>
 </html>
