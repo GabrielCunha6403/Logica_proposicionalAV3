@@ -22,29 +22,37 @@ function createTruthTableHTML(matriz) {
 function startTableJS(numberOfPropositions){
     let matriz = new Array(numberOfPropositions);
     for (let i = 0; i < matriz.length; i++) {
-        matriz[i] = new Array(Math.pow(2, numberOfPropositions - 1));
+        matriz[i] = new Array(Math.pow(2, numberOfPropositions));
     }
     return matriz;
 }
 
 function createTruthTableJS(numberOfPropositions) {
-    let matriz = startTableJS(numberOfPropositions);
+    let table = startTableJS(numberOfPropositions);
+    let height = Math.pow(2, numberOfPropositions);
     let toggle;
-    let times = Math.pow(2, numberOfPropositions)
+    let count;
+    let diference;
+    console.log(table);
     for (let i = 0; i < numberOfPropositions; i++) {
         toggle = true;
-        for (let j = 0; j < times; j++) {
-
-            if(i >= Math.pow(2, j))
-                toggle = !toggle
+        count = 0;
+        diference = Math.pow(2, i);
+        for (let j = 0; j < height; j++) {
             
+            if(count >= diference){
+                toggle = !toggle;
+                diference += Math.pow(2, i);
+            }
 
-            if(toggle)
-                matriz[i][j] = "V";
-            else
-                matriz[i][j] = "F";
+            if(toggle){
+                table[i][j] = "V";
+            } else {
+                table[i][j] = "F";
+            }
+            count++;    
         }
     }
 }
 
-createTruthTableJS(2);
+createTruthTableJS(5);
