@@ -12,11 +12,20 @@ function clean() {
 }
 
 function createTruthTableHTML(matriz) {
-    let contador = 1;
     let table = document.createElement("table");
-    for (let i = 0; i < numberOfPropositions; i++) {
-        
+    for (let i = 0; i < matriz[0].length; i++) {
+        let tr = document.createElement("tr");
+        for (let j = matriz.length - 1; j >= 0 ; j--) {
+            let td = document.createElement("td");
+
+            let data = document.createTextNode(matriz[j][i]);
+
+            td.appendChild(data);
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
     }
+    document.getElementById("tableArea").appendChild(table);
 }
 
 function startTableJS(numberOfPropositions){
@@ -33,7 +42,6 @@ function createTruthTableJS(numberOfPropositions) {
     let toggle;
     let count;
     let diference;
-    console.log(table);
     for (let i = 0; i < numberOfPropositions; i++) {
         toggle = true;
         count = 0;
@@ -53,6 +61,7 @@ function createTruthTableJS(numberOfPropositions) {
             count++;    
         }
     }
+    return table;
 }
 
-createTruthTableJS(5);
+createTruthTableHTML(createTruthTableJS(3));

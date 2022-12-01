@@ -1,6 +1,51 @@
 body{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
+    font-family: consolas;
+}
+
+#tableArea{
+    margin: 50px 0;
+}
+
+table{
+    border-collapse: collapse;
+    color: #0f0;
+}
+table, th, td {
+    border: 1px solid;
+    padding: 5px 20px;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.btnArea{
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.btnArea button{
+    width: 5rem;
+    height: 3rem;
+    margin: 5px 10px;
+    background-color: #0f0;
+    border-radius: 8px;
+    border: none;
+    font-size: 30px;
+    transition: 0.1s;
+}
+.btnArea button:hover{
+    box-shadow: 0 0px 20px 0px #0f0,0 0px 30px 0px #0f0,0 0px 40px 0px #0f0;
+}
+
+#proposition{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #0f0;
+    font-size: 30px;
+    color: #0f0;
 }
