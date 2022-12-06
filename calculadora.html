@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html style="background-color: #000;">
 <body>
-    <div>
+    <div style="margin: 50px 0">
         <input id="proposition" type="text" disabled>
         <div style="display: flex; flex-direction: column; margin: 30px 0; align-items: center;">
             <div class="btnArea">
@@ -20,14 +20,14 @@
                 <button id="btnNot" value=")" onclick="printValue(value)">)</button>
             </div>
             <div class="btnArea">
-                <button style="width: 94%;">RUN</button>
+                <button id="btnRun" style="width: 94%;" onclick="run()">RUN</button>
             </div>
             <div class="btnArea">
                 <button style="width: 94%;" onclick="clean()">CLEAN</button>
             </div>
         </div>
     </div>
-    <div id="tableArea"></div>
+    <div id="tableArea" style="display: flex;"></div>
 
 <script type="text/javascript" src="calculadoraLogica.js"></script>
 <link href="style.css" rel="stylesheet" />

@@ -1,10 +1,10 @@
 var inputText = document.getElementById("proposition")
 var btnA = document.getElementById("btnA");
+var expression = [];
 
 
 function printValue(value) {
     inputText.value += value;
-    console.log(btnA);
 }
 
 function clean() {
@@ -64,4 +64,61 @@ function createTruthTableJS(numberOfPropositions) {
     return table;
 }
 
-createTruthTableHTML(createTruthTableJS(3));
+//createTruthTableHTML(createTruthTableJS(3));
+
+function and(proposition1, proposition2) {
+    let value1, value2;
+
+    if(proposition1 === "V")
+        value1 = 1;
+    else
+        value1 = 0;
+
+    if(proposition2 === "V")
+        value2 = 1;
+    else
+        value2 = 0;
+    
+    if(value1 + value2 == 2)
+        return "V";
+    else
+        return "F";
+}
+
+function or(proposition1, proposition2) {
+    let value1, value2;
+
+    if(proposition1 === "V")
+        value1 = 1;
+    else
+        value1 = 0;
+
+    if(proposition2 === "V")
+        value2 = 1;
+    else
+        value2 = 0;
+
+    if(value1 + value2 == 0)
+        return "F";
+    else
+        return "V";
+}
+
+function not(proposition) {
+    if (proposition === "V")
+        return "F";
+    else
+        return "V";
+}
+
+function ifThen(proposition1, proposition2) {
+    if(proposition1 === "V" && proposition2 === "F")
+        return "F";
+    else
+        return "V";
+}
+
+function run() {
+    console.log(inputText.value);
+    
+}
