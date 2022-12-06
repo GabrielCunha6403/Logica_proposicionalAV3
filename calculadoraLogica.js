@@ -71,10 +71,50 @@ function validarSintaxe(expressao) {
 }
 
 function calcular(a, operacao, b){
+  switch (operacao){
+    case ("^"):
+      if (a == 1 && a == b){
+        return 1;
+      } else {
+        return 0;
+      }
+
+    case ("v"):
+      if (a == 1 || b == 1){
+        return 1;
+      } else {
+        return 0;
+      }
+
+    case ("->"):
+      if (b == 1){
+        return 1;
+      } else {
+        if (a == 0){
+          return 1;
+        } else {
+          return 0;
+        }
+      }
+
+    case ("<->"):
+      if (a == b){
+        return 1;
+      } else {
+        return 0;
+      }
+
+
+      //ZERO EQUIVALE A F
+      //UM EQUIVALE A V
+      //USAR ESSA FUNÇÃO PRA TABELA VERDADE
+
+
+  }
 
 }
 
 var expressao = prompt("Digite aqui: ");
-validarSintaxe(expressao)
+var expressaoCheck = expressao.split(" ")
 
 
