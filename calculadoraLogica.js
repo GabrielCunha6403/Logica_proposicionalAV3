@@ -114,7 +114,62 @@ function calcular(a, operacao, b){
 
 }
 
+const operadores = ["^", "v", "->", "<->"];
+
+
+
+
 var expressao = prompt("Digite aqui: ");
-var expressaoCheck = expressao.split(" ")
+validarCaracteres(expressao);
+validarSintaxe(expressao)
+
+
+//RESOLVER PRIMEIRO EXPRESSÕES DENTRO DE PARENTESES
+
+var tratarParent = expressao.replaceAll("(", "&(").replaceAll(")", ")&");
+var parentArray = tratarParent.split("&");
+
+
+for (let i = 0; i < parentArray.length; i++) {
+  var element = parentArray[i];
+
+  if (element.charAt(0) == "("){
+      var novo = element.replaceAll("(","").replaceAll(")","");
+
+      var resolver = novo.split(" ");
+
+      var resultado = calcular(resolver[0], resolver[1], resolver[2]);
+
+      //SOBRECREVER ELEMENTO COM RESULTADO
+      parentArray[i] = resultado;
+      
+      
+  }
+  
+}
+
+
+//CALCULAR EXPRESSÕES RESTANTES
+var final = parentArray.join("").split(" ");
+
+for (let i = 0; i < final.length; i++) {
+  const element = final[i];
+
+  if (operadores.includes(element)){
+    var resultado = calcular(final[i-1], final[i], final[i+1] )  
+    
+    //depois de calcular
+      final[i-1] = "";
+      final[i] = resultado;
+      final[i+1] = "";
+  }
+  
+}
+
+console.log(final)
+
+
+
+
 
 

@@ -1,0 +1,50 @@
+<script>
+    var teste = "(a -> b) -> c ";
+
+    const operators = ["^", "->"]
+    
+    /* teste.split("").forEach((token) => {
+        if (token ==)
+    }) */
+
+    var novo = teste.replaceAll("(", "&(").replaceAll(")", ")&");
+
+    var stringSplittada = novo.split("&");
+
+    //CALCULAR PARENTESES PRIMEIRO
+    for (let i = 0; i < stringSplittada.length; i++) {
+        var element = stringSplittada[i];
+
+        if (element.charAt(0) == "("){
+            var novo = element.replaceAll("(","").replaceAll(")","");
+
+            var resolver = novo.split(" ");
+
+            stringSplittada[i] = "a";
+            
+            
+        }
+        
+    }
+
+    var final = stringSplittada.join("").split(" ")
+
+    for (let i = 0; i < final.length; i++) {
+        const element = final[i];
+
+        if (operators.includes(element)){
+            final[i-1] = "";
+            final[i] = "resultado";
+            final[i+1] = "";
+        }
+        
+    }
+    
+
+    
+    
+    
+
+    console.log(final);
+
+</script>
