@@ -14,12 +14,16 @@ table{
     border-collapse: collapse;
     color: #0f0;
 }
-table, th, td {
+table, tr, td {
     border: 1px solid;
     height: 58px;
     padding: 5px 20px;
     font-weight: bold;
     font-size: 40px;
+    font-weight: 300;
+}
+table, tr, th {
+    font-weight: 900;
 }
 
 .btnArea{

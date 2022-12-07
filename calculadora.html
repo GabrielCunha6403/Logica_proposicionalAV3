@@ -1,35 +1,49 @@
 <!DOCTYPE html>
-<html style="background-color: #000;">
-<body>
+<html style="background-color: #000">
+  <body>
     <div style="margin: 50px 0">
-        <input id="proposition" type="text" disabled>
-        <div style="display: flex; flex-direction: column; margin: 30px 0; align-items: center;">
-            <div class="btnArea">
-                <button id="btnA" value="A " onclick="printValue(value)">A</button>
-                <button id="btnB" value="B " onclick="printValue(value)">B</button>
-                <button id="btnC" value="C " onclick="printValue(value)">C</button>
-            </div>
-            <div class="btnArea">
-                <button id="btnOr" value="v " onclick="printValue(value)">v</button>
-                <button id="btnAnd" value="^ " onclick="printValue(value)">^</button>
-                <button id="btnThen" value="→ " onclick="printValue(value)">→</button>
-            </div>
-            <div class="btnArea">
-                <button id="btnNot" value="~" onclick="printValue(value)">~</button>
-                <button id="btnThen" value="(" onclick="printValue(value)">(</button>
-                <button id="btnNot" value=")" onclick="printValue(value)">)</button>
-            </div>
-            <div class="btnArea">
-                <button id="btnRun" style="width: 94%;" onclick="run()">RUN</button>
-            </div>
-            <div class="btnArea">
-                <button style="width: 94%;" onclick="clean()">CLEAN</button>
-            </div>
+      <input id="proposition" type="text" disabled />
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          margin: 30px 0;
+          align-items: center;
+        "
+      >
+        <div class="btnArea">
+          <button id="btnA" value="A " onclick="printValue(value), concat('A')">
+            A
+          </button>
+          <button id="btnB" value="B " onclick="printValue(value), concat('B')">
+            B
+          </button>
+          <button id="btnC" value="C " onclick="printValue(value), concat('C')">
+            C
+          </button>
         </div>
+        <div class="btnArea">
+          <button id="btnOr" value="v " onclick="printValue(value)">v</button>
+          <button id="btnAnd" value="^ " onclick="printValue(value)">^</button>
+          <button id="btnThen" value="→ " onclick="printValue(value)">→</button>
+        </div>
+        <div class="btnArea">
+          <button id="btnNot" value="~ " onclick="printValue(value)">~</button>
+          <button id="btnThen" value="(" onclick="printValue(value)">(</button>
+          <button id="btnNot" value=")" onclick="printValue(value)">)</button>
+        </div>
+        <div class="btnArea">
+          <button id="btnRun" style="width: 94%" onclick="run()">RUN</button>
+        </div>
+        <div class="btnArea">
+          <button style="width: 94%" onclick="clean()">CLEAN</button>
+          <button style="width: 94%" onclick="backspace()"><</button>
+        </div>
+      </div>
     </div>
-    <div id="tableArea" style="display: flex;"></div>
+    <div id="tableArea" style="display: flex"></div>
 
-<script type="text/javascript" src="calculadoraLogica.js"></script>
-<link href="style.css" rel="stylesheet" />
-</body>
+    <script type="text/javascript" src="calculadoraLogica.js"></script>
+    <link href="style.css" rel="stylesheet" />
+  </body>
 </html>
