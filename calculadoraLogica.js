@@ -3,6 +3,7 @@ var btnA = document.getElementById("btnA");
 var tableArea = document.getElementById("tableArea");
 var expression = [];
 var numberOfPropositions = 0;
+var height;
 
 function printValue(value) {
   inputText.value += value;
@@ -77,9 +78,9 @@ function createTruthTableJS(numberOfPropositions) {
       }
 
       if (toggle) {
-        table[i][j] = "V";
+        table[i][j] = 1;
       } else {
-        table[i][j] = "F";
+        table[i][j] = 0;
       }
       count++;
     }
@@ -126,7 +127,7 @@ function ifThen(proposition1, proposition2) {
 function run() {
   console.log(inputText.value);
   let tableJS = createTruthTableJS(expression.length);
-  let height = tableJS[0].length;
+  height = tableJS[0].length;
   let index1;
   let prop1;
   let prop2;
@@ -171,4 +172,248 @@ function run() {
         break;
     }
   }
+  tratarParenteses(0, 1, 0);
+
+
 }
+
+function calcula(op1, operator, op2, tr){
+
+    let td = document.createElement("td");
+    let value;
+
+    switch (operator) {
+        case "v":
+            value = or(op1, op2);
+            
+            break;
+        case "^":
+            value =  and(op1, op2);
+        
+            break;
+        case "→":
+            value =  ifThen(op1, op2);
+            
+            break;
+        case "~":
+            
+            break;
+        default:
+            break;
+    }
+
+    let data = document.createTextNode(value);
+    td.appendChild(data);
+    tr.appendChild(td);
+
+}
+
+//=========================================================================================================
+//=========================================================================================================
+//=========================================================================================================
+
+var tableArea = document.getElementById("tableArea");
+var inputText = document.getElementById("proposition");
+function validarCaracteres(expressao) {
+  const caracteresValidos = ["a", "b", "c", "->", "<->", "~", "^", "v"];
+
+  var flag = true;
+  for (let i = 0; i < expressao.length; i++) {
+    const checkChar = expressao[i];
+
+    if (!caracteresValidos.includes(checkChar)) {
+      flag = false;
+    }
+  }
+
+  if (flag) {
+    console.log("Tudo certo!");
+  } else {
+    console.log("Tem erro.");
+  }
+}
+
+function validarSintaxe(expressao) {
+  const letras = ["a", "b", "c"];
+  const operadores = ["~", "^", "v", "->", "<->"];
+
+  var expressaoAnalisar = expressao.split(" ");
+
+  var flag = true;
+  var contaParentesis = 0;
+
+
+  for (let i = 0; i < expressaoAnalisar.length; i++) {
+    const caracter = expressaoAnalisar[i];
+
+    //TRATAMENTO PARA NEGAÇÃO
+    if (caracter.length <= 2) {
+      if (caracter.charAt(0) == "~") {
+        var possivelLetra = caracter.charAt(1);
+
+        //NEGAÇÃO SÓ PODE SER USADO ANTES DE LETRA
+        if (!letras.includes(possivelLetra)) {
+          flag = false;
+        }
+
+        
+      }
+    } else {
+      flag = false;
+    }
+
+    //TRATAMENTO DE PARENTESES
+    if (caracter == ")"){
+      if (contaParentesis > 0){
+        contaParentesis--;
+      } else {
+        flag = false;
+      }
+    } else if(caracter == "("){
+      contaParentesis++;
+    }
+  }
+
+  //CHECA SE A QUANTIDADE DE PARENTESIS QUE ABRE É IGUAL AO QUE FECHA
+  if(contaParentesis != 0){
+    flag = false;
+  }
+
+  if (flag){
+    console.log("Tudo certo!");
+  } else {
+    console.log("Tem erro.");
+  }
+}
+
+function calcular(a, operacao, b, tr){
+  switch (operacao){
+    case ("^"):
+      if (a == 1 && a == b){
+        value =  1;
+      } else {
+        return 0;
+      }
+
+    case ("v"):
+      if (a == 1 || b == 1){
+        return 1;
+      } else {
+        return 0;
+      }
+
+    case ("->"):
+      if (b == 1){
+        return 1;
+      } else {
+        if (a == 0){
+          return 1;
+        } else {
+          return 0;
+        }
+      }
+
+    case ("<->"):
+      if (a == b){
+        return 1;
+      } else {
+        return 0;
+      }
+
+
+      //ZERO EQUIVALE A F
+      //UM EQUIVALE A V
+      //USAR ESSA FUNÇÃO PRA TABELA VERDADE
+
+
+  }
+
+}
+
+const operadores = ["^", "v", "->", "<->"];
+
+//RESOLVER PRIMEIRO EXPRESSÕES DENTRO DE PARENTESES
+
+function tratarParenteses(a, b, c){
+    var expressao = inputText.value;
+    validarCaracteres(expressao);
+    validarSintaxe(expressao);
+    var expressaoMostrar = expressao;
+    expressao = expressao.replaceAll("A", a).replaceAll("B", b).replaceAll("C", c);
+
+    var tratarParent = expressao.replaceAll("(", "&(").replaceAll(")", ")&");
+    var parentArray = tratarParent.split("&");
+
+    var tratarParentMostrar = expressaoMostrar.replaceAll("(", "&(").replaceAll(")", ")&");
+    var parentArrayMostrar = tratarParentMostrar.split("&");
+
+
+    for (let i = 0; i < parentArray.length; i++) {
+    var element = parentArray[i];
+    var elementMostrar = parentArrayMostrar[i];
+
+    if (element.charAt(0) == "("){
+        var novo = element.replaceAll("(","").replaceAll(")","");
+        var novoMostrar = elementMostrar.replaceAll("(","").replaceAll(")","");
+
+        var resolver = novo.split(" ");
+
+        var resultado = calcular(resolver[0], resolver[1], resolver[2]);
+
+        //SOBRECREVER ELEMENTO COM RESULTADO
+        parentArray[i] = resultado;
+            
+        let data = document.createTextNode(novoMostrar);
+        let th = document.createElement('th');
+        th.appendChild(data);
+        let tr = document.createElement('tr');
+        tr.appendChild(th);
+
+        for (let j = 0; j < height; j++) {
+            //calcula()
+        }
+
+        let table = document.createElement('table');
+        table.appendChild(tr);
+        tableArea.appendChild(table);
+        
+    }
+    
+    }
+
+    let data = document.createTextNode(expressaoMostrar);
+    let th = document.createElement('th');
+    th.appendChild(data);
+    let tr = document.createElement('tr');
+    tr.appendChild(th);
+    let table = document.createElement('table');
+    table.appendChild(tr);
+    tableArea.appendChild(table);
+
+    //CALCULAR EXPRESSÕES RESTANTES
+    var prefinal = parentArray.join("");
+    var final = parentArray.join("").split(" ");
+    
+    for (let i = 0; i < final.length; i++) {
+      const element = final[i];
+    
+      if (operadores.includes(element)){
+        var resultado = calcular(final[i-1], final[i], final[i+1] )  
+        
+        //depois de calcular
+          final[i-1] = "";
+          final[i] = resultado;
+          final[i+1] = "";
+      }
+      
+    }
+    
+    console.log(final)
+}
+
+
+
+
+
+
+
